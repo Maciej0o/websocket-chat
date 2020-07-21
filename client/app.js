@@ -7,33 +7,35 @@ const messageContentInput = document.getElementById('message-content');
 
 let userName;
 
-loginForm.addEventListener('submit', login);
 
 const login = event => {
   event.preventDefault();
 
-  if(userNameInput.innerHTML == '') {
+  if(userNameInput.value == '') {
     window.alert('Username is missing!!!');
   } else{
-    userName = userNameInput.innerHTML;
+    userName = userNameInput.value;
     console.log(userName);
 
-    userNameInput.classList.toggle('show');
+    loginForm.classList.toggle('show');
     messagesSection.classList.toggle('show');
   }
 }
-addMessageForm.addEventListener('submit', sendMessage);
+loginForm.addEventListener('submit', login);
+
 
 const sendMessage = event => {
   event.preventDefault();
 
-  if (messageContentInput.innerHTML == '') {
+  if (messageContentInput.value == '') {
     window.alert('Message is missing');
   } else {
-    addMessageForm(userName, messageContentInput.value);
+    addMessage(userName, messageContentInput.value);
     messageContentInput.value = '';
   }
 }
+addMessageForm.addEventListener('submit', sendMessage);
+
 
 const addMessage = (author, content) => {
   const message = document.createElement('li');
